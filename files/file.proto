@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package file;
 
-option go_package = "github.com/blazee/cloud-drive/microservices/files";
+option go_package = "github.com/blazee/cloud-drive-protos/files";
 
 service FileService {
   rpc GetFiles(UserRequest) returns (FileResponse);
