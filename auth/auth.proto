@@ -42,7 +42,7 @@ message Token {
 }
 
 message ValidateCodeRequest {
-  string email = 1;
+  string user_id = 1;
   string code = 2;
 }
 
