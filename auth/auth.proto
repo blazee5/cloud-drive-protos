@@ -7,7 +7,7 @@ option go_package = "github.com/blazee5/cloud-drive-protos/auth";
 service AuthService {
   rpc SignUp(SignUpRequest) returns (UserResponse);
   rpc SignIn(SignInRequest) returns (Token);
-  rpc ValidateCode(ValidateCodeRequest) returns (ValidateCodeResponse);
+  rpc ValidateAccount(ValidateAccountRequest) returns (ValidateAccountResponse);
 }
 
 message User {
@@ -41,11 +41,10 @@ message Token {
   string token = 1;
 }
 
-message ValidateCodeRequest {
-  string user_id = 1;
-  string code = 2;
+message ValidateAccountRequest {
+  string code = 1;
 }
 
-message ValidateCodeResponse {
+message ValidateAccountResponse {
   string status = 1;
 }
