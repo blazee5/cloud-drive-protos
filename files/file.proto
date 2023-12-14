@@ -5,15 +5,36 @@ package file;
 option go_package = "github.com/blazee/cloud-drive-protos/files";
 
 service FileService {
-  rpc GetFiles(UserRequest) returns (FileResponse);
+  rpc GetFiles(GetFilesRequest) returns (GetFileResponse);
   rpc UploadFile(UploadRequest) returns (UploadResponse);
   rpc DownloadFile(FileRequest) returns (File);
   rpc UpdateFile (UpdateFileRequest) returns (SuccessResponse);
   rpc DeleteFile (FileRequest) returns (SuccessResponse);
 }
 
-message UserRequest {
+message GetFilesRequest {
   string user_id = 1;
+  int64 page = 2;
+  int64 size = 3;
+}
+
+message GetFileResponse {
+  int64 total = 1;
+  int64 total_pages = 2;
+  int64 page = 3;
+  int64 size = 4;
+  repeated FileInfo files = 5;
+}
+
+message UploadRequest {
+  string file_name = 1;
+  string file_type = 2;
+  string user_id = 3;
+  bytes chunk = 4;
+}
+
+message UploadResponse {
+  int64 id = 1;
 }
 
 message FileRequest {
@@ -40,21 +61,6 @@ message UpdateFileRequest {
   int64 id = 1;
   string name = 2;
   string user_id = 3;
-}
-
-message FileResponse {
-  repeated FileInfo files = 1;
-}
-
-message UploadRequest {
-  string file_name = 1;
-  string file_type = 2;
-  string user_id = 3;
-  bytes chunk = 4;
-}
-
-message UploadResponse {
-  int64 id = 1;
 }
 
 message SuccessResponse {
