@@ -4,6 +4,8 @@ package file;
 
 option go_package = "github.com/blazee/cloud-drive-protos/files";
 
+import "google/protobuf/timestamp.proto";
+
 service FileService {
   rpc GetFiles(GetFilesRequest) returns (GetFileResponse);
   rpc UploadFile(UploadRequest) returns (UploadResponse);
@@ -55,6 +57,7 @@ message FileInfo {
   string name = 2;
   string user_id = 3;
   int64 download_count = 4;
+  google.protobuf.Timestamp created_at = 5;
 }
 
 message UpdateFileRequest {
